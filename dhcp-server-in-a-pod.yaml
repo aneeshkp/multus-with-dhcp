@@ -1,25 +1,10 @@
-apiVersion: "k8s.cni.cncf.io/v1"
-kind: NetworkAttachmentDefinition
-metadata:
-  name: dhcp-server-bridge
-spec:
-  config: '{
-      "cniVersion": "0.3.1",
-      "type": "bridge",
-      "bridge": "dhcp-testbridge",
-      "vlan": "100",     
-      "ipam": {
-         "type": "static"
-       }    
-}'
-[centos@kube-master1 ~]$ cat dhcp-server-pod.yml 
 apiVersion: v1
 kind: Pod
 metadata:
   name: dhcp-server-pod
   annotations:
     k8s.v1.cni.cncf.io/networks: '[
-            { "name": "dhcp-server-bridge",
+            { "name": "dhcp-server-bridge-conf",
               "ips": [
  		"192.168.110.10/24"
                  ]
