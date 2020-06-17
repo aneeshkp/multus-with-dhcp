@@ -1,3 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dnsmasq-config
+  namespace: default
+data:
+  dnsmasq.conf: |-
 # This config file is intended for use with a container instance of dnsmasq
 
 # The container should be run as follows with the generated dnsmasq.conf file
@@ -23,9 +30,9 @@ except-interface=lo
 
 dhcp-range=192.168.111.10,192.168.111.60,30m
 #default gateway
-#dhcp-option=3,192.168.111.4
+dhcp-option=3,192.168.111.4
 #dns server
-#dhcp-option=6,192.168.111.3
+dhcp-option=6,192.168.111.3
 
 log-queries
 log-dhcp
